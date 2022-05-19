@@ -1,5 +1,5 @@
 import React from "react"
-import cart from "./cart.svg"
+import CartWidget from "./CartWidget/CartWidget"
 
 
 function Nav(props){
@@ -16,7 +16,7 @@ function Nav(props){
                     <li><a href="">ABOUT</a></li>
                     <li><a href="">CONTACT</a></li>
                 </ul>
-                <img src={cart} alt="Cart"/>
+                <CartWidget />
             </div>
             <div className="nav-footer"/>
         </div>
