@@ -1,26 +1,17 @@
 import './App.css';
-import {Nav, Random} from './components/Navbar/Navbar'
+import React from "react"
+import {Nav} from './components/Navbar/Navbar'
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
+import ItemCount from "./components/ItemCount/ItemCount"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Nav />
-        <ItemListContainer GPU="NVIDIA GTX 3090"/>
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-      </header>
+      <div className="App-header"><Nav /></div>
+      
+      <ItemListContainer GPU="NVIDIA GTX 3090">
+        <ItemCount item={"Ryzen 5 3600g"} stock={12} initial={1} />
+      </ItemListContainer>
     </div>
   );
 }
