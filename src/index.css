@@ -10,11 +10,17 @@
 html {
   width: 100vw;
   overflow-x: hidden;
+  height: 100%;
 }
 
 #root {
   width: 100%;
   overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.App {
+  min-height: 100vh;
 }
 
 body {
@@ -28,6 +34,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100vw;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 code {

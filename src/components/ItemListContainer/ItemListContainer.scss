@@ -1,9 +1,9 @@
 .wrapper {
     display: flex;
+    height: 100vh;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    height: 50vh;
     background-color: rgb(37, 37, 37);
     gap: 5vh;
     p {
