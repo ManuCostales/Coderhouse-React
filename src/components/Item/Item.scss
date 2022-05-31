@@ -7,7 +7,7 @@
     border-radius: 10px;
     display: flex;
     flex-flow: column nowrap;
-    align-items: space-between;
+    align-items: center;
     justify-content: space-between;
     padding: 2rem;
     color: white;
@@ -18,8 +18,25 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        gap: 20px;
         p{
             font-size: 1rem;
         }
+    }
+    .item__img {
+        height: 200px;
+        width: 200px;
+        img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: fill;
+        }
+    }
+    a {
+        background-color: rgb(65, 65, 65);
+        color: white;
+        border-radius: 10px;
+        // border: 1px solid white;
+        padding: 1rem;
     }
 }
