@@ -1,5 +1,6 @@
 import React from "react"
 import CartWidget from "./CartWidget/CartWidget"
+import { Link, NavLink } from "react-router-dom"
 
 
 function Nav(props){
@@ -7,14 +8,17 @@ function Nav(props){
         <div className="nav">
             <div className="navbar">
                 <div style={{color: "white"}}className="navbar__title">
-                    <h2 style={{fontSize: "2rem"}}>NEBULA</h2>
+                    <h2 style={{fontSize: "2rem"}}><Link to={`/`}>NEBULA</Link></h2>
                     <p>PC Store</p>
                 </div>
                 <input className="navbar__search"></input>
                 <ul className="navbar__list">
-                    <li><a href="">SHOP</a></li>
-                    <li><a href="">ABOUT</a></li>
-                    <li><a href="">CONTACT</a></li>
+                    {/* <li><Link to={`/category/GPU`}>Placas de Video</Link></li>
+                    <li><Link to={`/category/CPU`}>Procesadores</Link></li>
+                    <li><Link to={`/category/Motherboard`}>Motherboards</Link></li> */}
+                    <li><NavLink to={`/category/CPU`} className={({ isActive }) => isActive ? "ActiveLink" : "Link" }>Procesadores</NavLink></li>
+                    <li><NavLink to={`/category/Motherboard`} className={({ isActive }) => isActive ? "ActiveLink" : "Link" }>Motherboards</NavLink></li>
+                    <li><NavLink to={`/category/GPU`} className={({ isActive }) => isActive ? "ActiveLink" : "Link" }>Placas de Video</NavLink></li>
                 </ul>
                 <CartWidget />
             </div>

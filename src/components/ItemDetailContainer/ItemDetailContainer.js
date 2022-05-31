@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import ItemDetail from "./ItemDetail/ItemDetail"
-import getDetails from "../asyncmockDetails"
+import { getDetails } from "../asyncmockDetails"
 import { useParams } from "react-router-dom"
 
 function ItemDetailContainer () {

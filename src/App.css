@@ -2,6 +2,7 @@
   text-align: center;
   display: flex;
   flex-flow: column nowrap;
+  height: 100%;
 }
 
 .App-logo {

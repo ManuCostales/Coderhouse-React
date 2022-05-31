@@ -10,16 +10,15 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="App-header"><Nav /></div>
+        <Nav />
         <Routes>
-          <Route path="/" element={<ItemListContainer GPU="NVIDIA GTX 3090" >
+          <Route path="/" element={<ItemListContainer cat="Todo" >
               <ItemCount item={"Ryzen 5 3600g"} stock={12} initial={1} />
-              <ItemDetailContainer />
             </ItemListContainer>}/>
-          <ItemListContainer >
+          {/* <ItemListContainer >
             
-          </ItemListContainer>
-          <Route path="/category/:id"  />
+          </ItemListContainer> */}
+          <Route path="/category/:id" element={<ItemListContainer cat="Filtrado"/>} />
           <Route path="/item/:id" element={<ItemDetailContainer />} />
         </Routes>
       </BrowserRouter>

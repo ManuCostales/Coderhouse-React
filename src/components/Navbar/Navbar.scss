@@ -34,6 +34,10 @@
             font-style: italic;
             letter-spacing: -3px;
             margin: 0;
+            color: white;
+            a {
+                color: white;
+            }
         }
         p {
             font-weight: 300;
@@ -56,7 +60,7 @@
         font-size: 1rem;
         align-items: center;
         a {
-            color: white;
+            // color: white;
             font-size: 0.9rem;
             font-weight: 600;
         }
@@ -68,9 +72,14 @@
     background: linear-gradient(#00FFD1, #00FFFF);
 }
 
+.Link {
+    color: white;
+}
 
+.ActiveLink {
+    color: #00FFD1;
+}
 
- 
 
 
 
