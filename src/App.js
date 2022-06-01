@@ -11,16 +11,18 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Nav />
-        <Routes>
-          <Route path="/" element={<ItemListContainer cat="Todo" >
-              <ItemCount item={"Ryzen 5 3600g"} stock={12} initial={1} />
-            </ItemListContainer>}/>
-          {/* <ItemListContainer >
-            
-          </ItemListContainer> */}
-          <Route path="/category/:id" element={<ItemListContainer cat="Filtrado"/>} />
-          <Route path="/item/:id" element={<ItemDetailContainer />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<ItemListContainer cat="Todo" >
+                <ItemCount item={"Ryzen 5 3600g"} stock={12} initial={1} />
+              </ItemListContainer>}/>
+            {/* <ItemListContainer >
+              
+            </ItemListContainer> */}
+            <Route path="/category/:id" element={<ItemListContainer cat="Filtrado"/>} />
+            <Route path="/item/:id" element={<ItemDetailContainer />} />
+          </Routes>
+        </main>
       </BrowserRouter>
     </div>
   );

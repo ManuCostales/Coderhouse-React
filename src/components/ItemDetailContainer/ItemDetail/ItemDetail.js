@@ -2,7 +2,9 @@
 function ItemDetail ( {item} ) {
     return (
         <div className="detail__card">
-            <img alt={item.name} src={item.img}></img>
+            <div class="img__container">
+                <img alt={item.name} src={item.img}></img>
+            </div>
             <div className="detail__card--body">
                 <div>
                     <p>{item.use}</p>

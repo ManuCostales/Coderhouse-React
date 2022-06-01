@@ -1,4 +1,4 @@
-import ItemList from "../ItemList/ItemList.js"
+import ItemList from "./ItemList/ItemList.js"
 import { useState, useEffect} from "react"
 import { useParams } from "react-router-dom"
 import { getProducts, getProductsByCategory } from "../asyncmockDetails.js"

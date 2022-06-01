@@ -1,0 +1,11 @@
+
+.item__list {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    gap: 40px;
+    align-items: center;
+    padding: 0 5vw;
+}
