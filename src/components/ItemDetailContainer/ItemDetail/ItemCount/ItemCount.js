@@ -1,14 +1,14 @@
 import { useState } from "react"
 
-function ItemCount ({ item, stock, initial, onAdd}){
+function ItemCount ({ onConfirm, onAddItem, onRemoveItem, item, stock, initial, onAdd}){
 
-    const [count, setCount] = useState(initial)
+    const [count, setCount] = useState(0)
 
     const decrement = () => {
         if (count < 1){
             return
         }
-        setCount(count - 1)
+        setCount(prev => prev - 1)
         console.log(count)
     }
 
@@ -16,8 +16,14 @@ function ItemCount ({ item, stock, initial, onAdd}){
         if (count + 1 > stock){
             return
         }
-        setCount(count + 1)
-        console.log(count)
+        else if (count === 0){
+            setCount(count + 1)
+            console.log(count)
+        }
+        else {
+            setCount(prev => prev + 1)
+            console.log(count)
+        }
     }
 
     onAdd = () => {
@@ -37,11 +43,17 @@ function ItemCount ({ item, stock, initial, onAdd}){
         <div className="itemCount">
             <p className="itemName">{item}</p>
             <div className="itemCountInput">
-                <button onClick={decrement}>-</button>
+                <button onClick={()=>{
+                    decrement()
+                    onRemoveItem(count - 1)
+                }}>-</button>
                 <p>{count}</p>
-                <button onClick={increment}>+</button>
+                <button onClick={()=>{
+                    increment()
+                    onAddItem(count + 1)
+                    }}>+</button>
             </div>
-            <button className="addToCart" onClick={onAdd}>Agregar al Carrito</button>
+            <button className="addToCart" onClick={() => onConfirm(count)}>Agregar al Carrito</button>
         </div>
     )
 }

@@ -11,6 +11,16 @@ function ItemListContainer (props){
 
     console.log(id)
 
+    const onResize = () => console.log("cambio de tamaño")
+
+    useEffect(() => {
+        window.addEventListener('resize', onResize)
+
+        return () => {
+            window.removeEventListener('resize', onResize)
+        }
+    }, [])
+
     useEffect (() => {
         if(!id) {
             getProducts().then(response => {
