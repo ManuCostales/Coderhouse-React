@@ -3,7 +3,7 @@ import ItemDetail from "./ItemDetail/ItemDetail"
 import { getDetails } from "../asyncmockDetails"
 import { useParams } from "react-router-dom"
 
-function ItemDetailContainer () {
+function ItemDetailContainer ({ setCart }) {
 
     const [detail, setDetail] = useState({})
 
@@ -19,7 +19,7 @@ function ItemDetailContainer () {
 
     return (
         <div className="itemDetailContainer">
-            <ItemDetail item={detail}/>
+            <ItemDetail item={detail} setCart={setCart}/>
         </div>
     )
 

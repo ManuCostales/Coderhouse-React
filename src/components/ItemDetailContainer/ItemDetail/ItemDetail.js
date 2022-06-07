@@ -1,6 +1,7 @@
 import ItemCount from "./ItemCount/ItemCount"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
+import { Context } from "../../../App"
 
 function ItemDetail ( {item} ) {
 
@@ -10,10 +11,22 @@ function ItemDetail ( {item} ) {
 
     const [quantity, setQuantity] = useState(0)
 
+    const { addItem } = useContext(Context)
+
+    let addedItem = {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: quantity,
+    }
+
     const handleOnAdd = (count) => {
         console.log("Agregue al carrito")
+        console.log(quantity)
         console.log(count)
-        setQuantity(count)  
+        setQuantity(count)
+        console.log(quantity)
+        addItem(addedItem)  
     }
 
     useEffect(() => {
