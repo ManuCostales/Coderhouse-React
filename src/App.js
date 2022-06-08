@@ -4,21 +4,14 @@ import {Nav} from './components/Navbar/Navbar'
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer"
 import { Routes, Route, BrowserRouter } from "react-router-dom"
-
-export const Context = createContext()
+import Cart from "./components/Cart/Cart.js"  
+import { CartContextProvider } from "./context/CartContext"
 
 function App() {
 
-  const [cart, setCart] = useState([])
-  console.log(cart)
-
-  const addItem = (productToAdd) => {
-    setCart([...cart, productToAdd])
-  }
-
   return (
     <div className="App">
-      <Context.Provider value={{ addItem }}>
+      <CartContextProvider>
         <BrowserRouter>
           <Nav />
           <main>
@@ -26,11 +19,11 @@ function App() {
               <Route path="/" element={<ItemListContainer cat="Todo" />}/>
               <Route path="/category/:id" element={<ItemListContainer cat="Filtrado"/>} />
               <Route path="/item/:id" element={<ItemDetailContainer/>} />
-              <Route path='/cart' element={<h1>Cart</h1>}/>
+              <Route path='/cart' element={<Cart/>}/>
             </Routes>
           </main>
         </BrowserRouter>
-      </Context.Provider>
+      </CartContextProvider>
     </div>
   );
 }

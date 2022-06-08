@@ -2,7 +2,7 @@ import { useState } from "react"
 
 function ItemCount ({ onConfirm, onAddItem, onRemoveItem, item, stock, initial, onAdd}){
 
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(initial)
 
     const decrement = () => {
         if (count < 1){

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ItemDetail from "./ItemDetail/ItemDetail"
 import { getDetails } from "../asyncmockDetails"
 import { useParams } from "react-router-dom"
+import CartContext from "../../context/CartContext"
 
 function ItemDetailContainer ({ setCart }) {
 
@@ -19,7 +20,7 @@ function ItemDetailContainer ({ setCart }) {
 
     return (
         <div className="itemDetailContainer">
-            <ItemDetail item={detail} setCart={setCart}/>
+            <ItemDetail item={detail} />
         </div>
     )
 

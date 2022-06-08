@@ -2,7 +2,6 @@ import React from "react"
 import CartWidget from "./CartWidget/CartWidget"
 import { Link, NavLink } from "react-router-dom"
 
-
 function Nav(props){
     return(
         <div className="nav">
