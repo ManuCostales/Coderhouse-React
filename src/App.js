@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <CartContextProvider>
         <BrowserRouter>
-          <Nav />
+          <Nav/>
           <main>
             <Routes>
               <Route path="/" element={<ItemListContainer cat="Todo" />}/>

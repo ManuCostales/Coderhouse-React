@@ -20,7 +20,9 @@ function ItemDetail ( {item} ) {
     let addedItem = {
         id: item.id,
         name: item.name,
-        price: item.price,
+        unitPrice: item.price,
+        stock: item.stock,
+        totalPrice: item.price * quantity,
         quantity: quantity,
     }
 

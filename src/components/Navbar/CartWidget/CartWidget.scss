@@ -1,4 +1,10 @@
-.cart__div {
+.displayFlex {
     display: flex;
+    align-items: center;
+    color: white;
     gap: 10px;
+}
+
+.displayNone {
+    display: none;
 }

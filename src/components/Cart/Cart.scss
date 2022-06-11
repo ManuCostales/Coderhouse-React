@@ -37,4 +37,13 @@
             color: white;
         }
     }
+    .backToHome {
+        font-size: 2rem;
+        color:#00FFD1;
+        text-shadow: 0px 0px 8px rgba(0,255,209,1);
+        transition: all 0.3s;
+        &:hover {
+            font-size: 3rem;
+        }
+    }
 }

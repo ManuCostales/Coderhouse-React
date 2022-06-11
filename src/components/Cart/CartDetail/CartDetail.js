@@ -9,7 +9,8 @@ function CartDetail () {
         <div className="cart__detail">
                 {cart.map(prod => <div className="cart__detail--row" key={prod.id}>
                     <div>Name: { prod.name }</div>
-                    <div>Price: ${ prod.price }</div>
+                    <div>Unit Price: ${ prod.unitPrice }</div>
+                    <div>Total Price: ${ prod.totalPrice }</div>
                     <div>Stock: { prod.stock }</div>
                     <div>Quantity: { prod.quantity }</div>
                     <button className="remove__item" onClick={() => removeItem(prod.id)}>X</button>
