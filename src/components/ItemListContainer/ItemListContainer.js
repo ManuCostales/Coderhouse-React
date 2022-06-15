@@ -1,7 +1,9 @@
 import ItemList from "./ItemList/ItemList.js"
 import { useState, useEffect} from "react"
 import { useParams } from "react-router-dom"
-import { getProducts, getProductsByCategory } from "../asyncmockDetails.js"
+// import { getProducts, getProductsByCategory } from "../asyncmockDetails.js"
+import { getDocs, collection, query, where } from "firebase/firestore"
+import { database } from "../../services/firebase"
 
 function ItemListContainer (props){
 
@@ -21,18 +23,31 @@ function ItemListContainer (props){
         }
     }, [])
 
-    useEffect (() => {
-        if(!id) {
-            getProducts().then(response => {
-                setProducts(response)
+    useEffect (() => { 
+
+        const collRef = id ?
+        query(collection(database, "products"), where("category", "==", id))
+        : (collection(database, "products"))
+
+        getDocs(collRef).then(response => {
+            console.log(response.docs)
+            const products = response.docs.map(doc => {
+                return { id: doc.id, ...doc.data() } 
             })
-        }
-        else {
-            getProductsByCategory(id).then(response => {
-                setProducts(response)
-            })
-        }
-    }, [id])
+            setProducts(products)
+        }).catch(error => console.log(error))
+
+        // if(!id) {
+        //     getProducts().then(response => {
+        //         setProducts(response)
+        //     })
+        // }
+        // else {
+        //     getProductsByCategory(id).then(response => {
+        //         setProducts(response)
+        //     })
+        // }
+    },)
 
     return (
         <div className="wrapper">
