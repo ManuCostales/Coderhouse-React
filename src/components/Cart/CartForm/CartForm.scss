@@ -1,0 +1,55 @@
+
+.buyerToast {
+    margin-top: 10vh;
+    background-color: rgb(32, 32, 32) !important;
+    border: 2px solid #00FFD1;
+    color: #00FFD1 !important;
+    box-shadow: 0px 0px 15px #00FFD1 !important;
+    .Toastify__close-button {
+        color: #00FFD1 !important;
+    }
+}
+
+.cart__form {
+    border-radius: 10px;
+    background-color: rgb(32, 32, 32);
+    border: 2px solid #00FFD1;
+    box-shadow: 0px 0px 15px #00FFD1;
+    height: 30vh;
+    padding: 1rem;
+        form {
+        padding: 2rem;
+        height: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        gap: 20px;
+        label {
+            border: 2px solid #00FFD1;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 1rem;
+            input {
+                width: 15vw;
+                background-color: black;
+                border-radius: 10px;
+                color: white;
+                height: 2rem;
+            }
+        }
+        button {
+            border-radius: 10px;
+            background-color: rgb(32, 32, 32);
+            border: 2px solid #00FFD1;
+            color: white;
+            padding: 1rem;
+            box-shadow: 0px 0px 15px #00FFD1;
+            transition: all 0.3s;
+            &:hover {
+                background-color: #00FFD1;
+                cursor: pointer;
+            }
+        }
+    }
+}
