@@ -1,30 +1,25 @@
 import ItemCount from "./ItemCount/ItemCount"
 import { useState, useEffect, useContext } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import CartContext from "../../../context/CartContext"
 
 function ItemDetail ( {item} ) {
 
+    console.log(item)
+
+    const navigate = useNavigate();
+
     const stock = item.stock
 
-    const [currentStock, setStock] = useState(stock)
+    const [currentStock, setStock] = useState(item.stock)
+
+    const [buyingState, setBuyingState] = useState(true)
 
     let [quantity, setQuantity] = useState(0)
-
-    console.log(quantity)
 
     const { addItem, getItemQuantity } = useContext(CartContext) 
 
     const initValue = getItemQuantity(item.id)
-
-    let addedItem = {
-        id: item.id,
-        name: item.name,
-        unitPrice: item.price,
-        stock: item.stock,
-        totalPrice: item.price * quantity,
-        quantity: quantity,
-    }
 
     const handleOnAdd = (count) => {
         if (count === 0){
@@ -36,28 +31,35 @@ function ItemDetail ( {item} ) {
         }
         else {
             alert("Has seleccionado " + count + " " + item.name)
-            console.log("Agregue al carrito")
-            console.log(quantity)
-            console.log(count)
             setQuantity(count)
-            console.log(quantity)
-            console.log(addedItem)
+            let addedItem = {
+                id: item.id,
+                name: item.name,
+                unitPrice: item.price,
+                stock: item.stock,
+                totalPrice: item.price * count,
+                quantity: count,
+            }
             addItem(addedItem)
-        }  
+            setBuyingState(false)
+        }
     }
 
     useEffect(() => {
-        console.log(item.stock)
         setStock(item.stock)
     }, [item])
 
     const handleStockRest = (count) => {
-        setStock(stock - count)
+        if (item.stock >= currentStock && currentStock > 0) {
+            setStock(currentStock - 1)
+        }
+        else {
+            return
+        }
     }
 
     const handleStockSum = (count) => {
-        if ( count > 0 ) {
-            console.log(currentStock)
+        if ( currentStock >= 0 && currentStock < item.stock) {
             setStock(currentStock + 1)
         }
         else {
@@ -67,25 +69,30 @@ function ItemDetail ( {item} ) {
 
     return (
         <div className="detail__card">
-            <div className="img__container">
+            <div className="card__div img__container">
                 <img alt={item.name} src={item.img}></img>
             </div>
             <div className="detail__card--body">
-                <div>
+                <div className="close__div" >
+                    <a onClick={() => navigate(-1)}>
+                        <img className="close__img" src="https://icongr.am/fontawesome/times-circle.svg?size=128&color=ffffff"></img>
+                    </a>
+                </div>
+                <div className="card__div">
                     <p>{item.use}</p>
                     <p>{item.selled}</p>
                 </div>
                 <h3>{item.name}</h3>
-                <div>
+                <div className="card__div">
                     <p>Calification: {item.calification}</p>
                     <p>Category: {item.category}</p>
                 </div>
                 <h5>${item.price}</h5>
                 <p className="descr">{item.description}</p>
                 <p className="specific">{item.specific}</p>
-                <div className="detail__body--buy">
+                <div className="card__div detail__body--buy">
                     <p>Stock: {currentStock} Units</p>
-                    { quantity > 0 ? <Link className="linkToCart" to="/cart">Finalizar Compra</Link> : <ItemCount onConfirm={handleOnAdd} onAddItem={handleStockRest} onRemoveItem={handleStockSum} item={item.name} stock={item.stock} initial={initValue} /> }
+                    { buyingState === false ? <Link className="linkToCart" to="/cart">Finalizar Compra</Link> : <ItemCount onConfirm={handleOnAdd} onAddItem={handleStockRest} onRemoveItem={handleStockSum} item={item} stock={currentStock} initial={quantity} /> }
                 </div>
             </div>
         </div>

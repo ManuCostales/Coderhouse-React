@@ -4,7 +4,6 @@ function Item ({id, name, price, category, img}) {
     return (
         <div onClick={()=> console.log("Hice click en item")} className="card">
             <div className="card__head">
-                <p>{id}</p>
                 <h3>{name}</h3>
             </div>
             <div className="item__img">
@@ -13,6 +12,7 @@ function Item ({id, name, price, category, img}) {
             <p className="card__price">${price}</p>
             <p className="card__category">{category}</p>
             <Link to={`/item/${id}`}>Ver Detalle</Link>
+            <p className="item__id">ID: {id}</p>
         </div>
     )
 }

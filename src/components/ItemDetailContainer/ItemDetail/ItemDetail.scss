@@ -13,6 +13,14 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    .close__div {
+        display: flex;
+        justify-content: flex-end;
+        .close__img {
+            width: 50px;
+            height: auto;
+        }
+    }
     .img__container {
         height: 90%;
         width: 50%;
@@ -30,7 +38,7 @@
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: space-between;
-        div {
+        .card__div {
             display: flex;
             justify-content: space-between;
         }

@@ -21,9 +21,6 @@ function Nav(props){
                 </div>
                 <input className="navbar__search"></input>
                 <ul className="navbar__list">
-                    {/* <li><Link to={`/category/GPU`}>Placas de Video</Link></li>
-                    <li><Link to={`/category/CPU`}>Procesadores</Link></li>
-                    <li><Link to={`/category/Motherboard`}>Motherboards</Link></li> */}
                     <li><NavLink to={`/category/CPU`} className={({ isActive }) => isActive ? "ActiveLink" : "Link" }>Procesadores</NavLink></li>
                     <li><NavLink to={`/category/Motherboard`} className={({ isActive }) => isActive ? "ActiveLink" : "Link" }>Motherboards</NavLink></li>
                     <li><NavLink to={`/category/GPU`} className={({ isActive }) => isActive ? "ActiveLink" : "Link" }>Placas de Video</NavLink></li>

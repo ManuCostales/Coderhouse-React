@@ -2,59 +2,43 @@ import ItemList from "./ItemList/ItemList.js"
 import { useState, useEffect} from "react"
 import { useParams } from "react-router-dom"
 // import { getProducts, getProductsByCategory } from "../asyncmockDetails.js"
-import { getDocs, collection, query, where } from "firebase/firestore"
-import { database } from "../../services/firebase"
+// import { getDocs, collection, query, where } from "firebase/firestore"
+// import { database } from "../../services/firebase"
+import { getProducts } from "../../services/firebase/firestore"
+import { SpinnerCircular } from 'spinners-react'
 
 function ItemListContainer (props){
 
     const [products, setProducts] = useState([])
 
+    const [loading, setLoading] = useState(true)
+
     const { id } = useParams()
 
     console.log(id)
 
-    const onResize = () => console.log("cambio de tamaño")
-
-    useEffect(() => {
-        window.addEventListener('resize', onResize)
-
-        return () => {
-            window.removeEventListener('resize', onResize)
-        }
-    }, [])
-
     useEffect (() => { 
 
-        const collRef = id ?
-        query(collection(database, "products"), where("category", "==", id))
-        : (collection(database, "products"))
-
-        getDocs(collRef).then(response => {
-            console.log(response.docs)
-            const products = response.docs.map(doc => {
-                return { id: doc.id, ...doc.data() } 
-            })
-            setProducts(products)
-        }).catch(error => console.log(error))
-
-        // if(!id) {
-        //     getProducts().then(response => {
-        //         setProducts(response)
-        //     })
-        // }
-        // else {
-        //     getProductsByCategory(id).then(response => {
-        //         setProducts(response)
-        //     })
-        // }
+        getProducts(id).then(response  => {
+            setProducts(response)
+            setLoading(false)
+        }).catch(error => {
+            setLoading(false)
+            console.log(error)
+        }).finally(() => {
+        })
     },)
 
     return (
-        <div className="wrapper">
-            <p>Categoría: {props.cat}</p>
-            <div>{props.children}</div>
-            <ItemList products={products}/>
+        <div className="list__container">
+            { loading === true ? <SpinnerCircular size="300px" сolor='#00FFD1' /> : 
+            <div className="wrapper">
+                <p className="category__name">{ id === undefined ? "Todos Los Productos" : id + "s"}</p>
+                <div>{props.children}</div>
+                <ItemList products={products}/>
+            </div>}
         </div>
+        
     )
 }
 

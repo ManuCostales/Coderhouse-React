@@ -2,27 +2,23 @@ import { useState } from "react"
 
 function ItemCount ({ onConfirm, onAddItem, onRemoveItem, item, stock, initial, onAdd}){
 
-    const [count, setCount] = useState(initial)
+    let [count, setCount] = useState(initial)
 
     const decrement = () => {
-        if (count < 1){
+        if (count > 0){
+            setCount(prev => prev - 1)
+        }
+        else {
             return
         }
-        setCount(prev => prev - 1)
-        console.log(count)
     }
 
     const increment = () => {
-        if (count + 1 > stock){
-            return
-        }
-        else if (count === 0){
-            setCount(count + 1)
-            console.log(count)
+        if (count < item.stock){
+            setCount(prev => prev + 1)
         }
         else {
-            setCount(prev => prev + 1)
-            console.log(count)
+            return
         }
     }
 
@@ -35,13 +31,13 @@ function ItemCount ({ onConfirm, onAddItem, onRemoveItem, item, stock, initial, 
             return
         }
         else {
-            alert("Has seleccionado " + count + " " + item)
+            alert("Has seleccionado " + count + " " + item.name)
         }
     }
 
     return (
         <div className="itemCount">
-            <p className="itemName">{item}</p>
+            <p className="itemName">{item.name}</p>
             <div className="itemCountInput">
                 <button onClick={()=>{
                     decrement()

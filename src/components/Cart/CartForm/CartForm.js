@@ -23,10 +23,10 @@ function CartForm (props) {
                     <input type="tel" value={buyer.phone} onChange={(e) => setBuyerData({...buyer, phone: e.target.value})}></input>
                 </label>
                 <label>Address
-                    <input type="text" value={buyer.address} onChange={(e) => setBuyerData({...buyer, address: e.target.value})({...buyer, address: e.target.value})}></input>
+                    <input type="text" value={buyer.address} onChange={(e) => setBuyerData({...buyer, address: e.target.value})}></input>
                 </label>
                 <button type="submit" onClick={(e) => {
-                    e.preventDefault();
+                    e.preventDefault()
                     console.log(buyer)
                     toast("Datos de Comprador Tomados!", {className:"buyerToast"})
                 }}>Submit</button>
@@ -34,7 +34,6 @@ function CartForm (props) {
             <ToastContainer />
         </div>
     )
-
 }
 
 

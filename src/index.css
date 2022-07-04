@@ -27,7 +27,11 @@ html {
 
 main {
   margin-top: 10vh;
-  min-height: 150vh;
+  height: 100%;
+  overflow: auto;
+  background-image: url(https://cdn.discordapp.com/attachments/717609066335174683/993234915996999791/Rectangle_8_1.jpg);
+  background-size: cover;
+  padding-bottom: 10vh;
 }
 
 body {

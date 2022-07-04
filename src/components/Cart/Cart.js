@@ -12,10 +12,13 @@ const Cart = () => {
 
     const { cart, removeItem, clearCart } = useContext(CartContext)
 
+    cart.forEach(item => console.log(item))
+
     const cartTotalPrices = cart.map(item => item.totalPrice)
 
     let [orderData, setOrderData] = useState({})
     let [buyingState, setBuyingState] = useState(false)
+    let [loadingOrder, setLoadingOrder] = useState(true)
 
     const [buyerData, setBuyerData] = useState({
             name: "",
@@ -27,18 +30,13 @@ const Cart = () => {
     const createOrder = () => {
 
         const obj = {
-            id: "",
-            buyerData,
+            id: '',
+            buyerData: buyerData,
             products: cart,
             total: cartTotalPrices
         }
 
         const collectionRef = collection(database, "orders")
-
-        addDoc(collectionRef, obj).then(({ id }) => {
-            console.log(`Se creo la orden con el id: ${id}`)
-            obj.id = id
-        })
 
         setBuyingState(true)
 
@@ -67,6 +65,7 @@ const Cart = () => {
                 addDoc(collectionRef, obj).then(({ id }) => {
                     console.log(id)
                     obj.id = id
+                    setLoadingOrder(false)
                 })
             } else {
                 return Promise.reject({type: "No Stock", products: outOfStock})
@@ -76,6 +75,7 @@ const Cart = () => {
             clearCart()
             console.log(`El id de la orden es: ${id}`)
             obj.id = id
+            setLoadingOrder(false)
         }).catch(error => {
             console.log(error)
             if (error.type === "No Stock") {
@@ -83,8 +83,14 @@ const Cart = () => {
             }
         })
         console.log(obj)
-
         setOrderData(obj)
+        console.log(database)
+
+        // cart.forEach(item =
+        cart.map(item => collection(database, "products").doc(item.id).update({
+            stock: item.stock - item.quantity
+            })
+        )
     }
 
     
@@ -97,11 +103,11 @@ const Cart = () => {
                 <button className="clear__cart" onClick={clearCart}>Remove All Items</button>
                 <CartForm buyerData={buyerData} setBuyerData={setBuyerData}/>
                 <button className="generate__cart" onClick={createOrder}>Generate Order</button>
-            </div> }
-            { cartTotalPrices.length === 0 ? <Link to="/" className="backToHome">Volver a Comprar</Link> : <p>Total: {cartTotalPrices.reduce((accum, currentItem) => {
+            </div>}
+            { cartTotalPrices.length === 0 ? <Link to="/" className="backToHome">Volver a Comprar</Link> : <p>Total: ${cartTotalPrices.reduce((accum, currentItem) => {
             return accum + currentItem
             })}</p> }
-            { buyingState === true && <Checkout orderData={orderData} /> }
+            { loadingOrder === false && <Checkout orderData={orderData} /> }
         </div>
     )
 }

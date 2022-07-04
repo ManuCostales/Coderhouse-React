@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import ItemDetail from "./ItemDetail/ItemDetail"
-import { getDetails } from "../asyncmockDetails"
 import { useParams } from "react-router-dom"
 import CartContext from "../../context/CartContext"
 import { getDoc, doc } from "firebase/firestore" 
 import { database } from "../../services/firebase"
+import { Link } from "react-router-dom"
 
 function ItemDetailContainer ({ setCart }) {
 
@@ -21,14 +21,13 @@ function ItemDetailContainer ({ setCart }) {
             const product = { id: response.id, ...response.data() }
             setDetail(product)
         }).catch(error => console.log(error))
-        // getDetails(id).then(response => setDetail(response) )
     }, [])
 
     console.log(detail)
 
     return (
         <div className="itemDetailContainer">
-            <ItemDetail item={detail} />
+            { detail == null || undefined ? <p>Ups! Este producto ya no existe! <Link to={'/'}>Volver a Comprar</Link></p> : <ItemDetail item={detail}/>}
         </div>
     )
 
