@@ -5,8 +5,6 @@ import CartContext from "../../../context/CartContext"
 
 function ItemDetail ( {item} ) {
 
-    console.log(item)
-
     const navigate = useNavigate();
 
     const stock = item.stock

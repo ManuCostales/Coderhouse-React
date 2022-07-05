@@ -27,7 +27,6 @@ function CartForm (props) {
                 </label>
                 <button type="submit" onClick={(e) => {
                     e.preventDefault()
-                    console.log(buyer)
                     toast("Datos de Comprador Tomados!", {className:"buyerToast"})
                 }}>Submit</button>
             </form>

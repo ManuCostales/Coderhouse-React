@@ -10,8 +10,6 @@ function Nav(props){
 
     const itemsInCart = cart.length
 
-    console.log(itemsInCart)
-
     return(
         <div className="nav">
             <div className="navbar">

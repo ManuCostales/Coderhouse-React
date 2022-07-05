@@ -11,7 +11,7 @@ function CartDetail () {
                     <div>Name: { prod.name }</div>
                     <div>Unit Price: ${ prod.unitPrice }</div>
                     <div>Total Price: ${ prod.totalPrice }</div>
-                    <div>Stock: { prod.stock }</div>
+                    <div>Stock Left: { prod.stock - prod.quantity}</div>
                     <div>Quantity: { prod.quantity }</div>
                     <button className="remove__item" onClick={() => removeItem(prod.id)}>X</button>
                     </div>)}

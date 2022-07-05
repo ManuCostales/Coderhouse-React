@@ -6,9 +6,6 @@ function Checkout(props){
 
     const orderData = props.orderData
 
-    console.log(orderData)
-    console.log(orderData.id)
-
     return(
         <div className="checkout">
             <div>

@@ -10,20 +10,18 @@ function ItemDetailContainer ({ setCart }) {
 
     const [detail, setDetail] = useState({})
 
-    const {id} = useParams()
+    const [loading, setLoading] = useState(true)
 
-    console.log(id)
+    const {id} = useParams()
 
     useEffect(() => {
 
         getDoc(doc(database, "products", id)).then(response => {
-            console.log(response)
             const product = { id: response.id, ...response.data() }
             setDetail(product)
+            setLoading(false)
         }).catch(error => console.log(error))
     }, [])
-
-    console.log(detail)
 
     return (
         <div className="itemDetailContainer">

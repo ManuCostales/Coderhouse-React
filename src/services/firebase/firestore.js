@@ -8,7 +8,6 @@ export const getProducts = (id) => {
         : (collection(database, "products"))
 
         getDocs(collRef).then(response => {
-            console.log(response.docs)
             const products = response.docs.map(doc => {
                 return { id: doc.id, ...doc.data() } 
             })

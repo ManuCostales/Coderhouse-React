@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function Item ({id, name, price, category, img}) {
     return (
-        <div onClick={()=> console.log("Hice click en item")} className="card">
+        <div className="card">
             <div className="card__head">
                 <h3>{name}</h3>
             </div>

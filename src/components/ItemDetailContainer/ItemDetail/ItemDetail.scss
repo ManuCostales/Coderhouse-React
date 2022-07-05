@@ -19,6 +19,9 @@
         .close__img {
             width: 50px;
             height: auto;
+            &:hover {
+                cursor:pointer;
+            }
         }
     }
     .img__container {

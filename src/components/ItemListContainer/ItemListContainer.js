@@ -1,9 +1,6 @@
 import ItemList from "./ItemList/ItemList.js"
 import { useState, useEffect} from "react"
 import { useParams } from "react-router-dom"
-// import { getProducts, getProductsByCategory } from "../asyncmockDetails.js"
-// import { getDocs, collection, query, where } from "firebase/firestore"
-// import { database } from "../../services/firebase"
 import { getProducts } from "../../services/firebase/firestore"
 import { SpinnerCircular } from 'spinners-react'
 
@@ -15,8 +12,6 @@ function ItemListContainer (props){
 
     const { id } = useParams()
 
-    console.log(id)
-
     useEffect (() => { 
 
         getProducts(id).then(response  => {
@@ -24,10 +19,9 @@ function ItemListContainer (props){
             setLoading(false)
         }).catch(error => {
             setLoading(false)
-            console.log(error)
         }).finally(() => {
         })
-    },)
+    },[id])
 
     return (
         <div className="list__container">

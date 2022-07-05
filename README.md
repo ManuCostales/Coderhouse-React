@@ -18,6 +18,7 @@ Toda la funcionalidad estara apuntada  al correcto funcionamiento como E-Commerc
 - Contador de Carrito (Cart Widget en Navbar).
 - Carrito de compras con los items seleccionados.
 - Checkout con la información de la orden de compra.
+- Base de datos con los productos y ordenes almacenados.
 
 ### Routing Aplicado:
 
@@ -26,11 +27,36 @@ Toda la funcionalidad estara apuntada  al correcto funcionamiento como E-Commerc
 - **Path: "/item/:id"** muestra el ***Detalle del Producto Seleccionado***. *id* hace referencia al **numero de id** del producto.
 - **Path: "/cart"** muestra el ***Carrito de Compras***. El carrito muestra los items seleccionados por el usuario para la compra junto con otros datos. Si el carrito se encuentra vacío se mostrara una opción para volver a comprar.
 -Dentro del carrito tambien se encuentra el Componente ***"Checkout"***, pero debido a que este es un Modal, no posee un Path específico.
-- Drag and drop markdown and HTML files into Dillinger
-- Export documents as Markdown, HTML and PDF
+
+## Especificaciones:
+
+    -Estructura product/item:
+        -calification: number
+        -category: string
+        -description: string
+        -img: string (URL)
+        -name: string
+        -price: number
+        -selled: string
+        -specific: string
+        -stock: number
+        -use: string
+
+    -Estructura orders:
+        -id: string,
+        -buyerData: 
+            name: string,
+            email: string,
+            phone: number,
+            address: string,
+        -products: array con los productos comprados,
+        -total: number
 
 
 ## Desarrollo 
+
+    Firebase-Firestore: Database utilizada para almacenar los datos.
+
     Ademas de las librerias por defecto de React, se utilizaron las siguientes tecnologias:
 
     React-Router:
@@ -42,5 +68,39 @@ Toda la funcionalidad estara apuntada  al correcto funcionamiento como E-Commerc
     Toastify:
     Libreria para notificaciones (toasts) personalizados. Es usada para hacer solamente una mejora estética al sitio.
 
+    React-Spinners:
+    Libreria para agregar funcionalidades de Spinner a la app.
+
+
+## Running Locally
+
+```bash
+$ git clone https://github.com/ManuCostales/Coderhouse-React
+$ cd Coderhouse-React
+$ npm install
+$ npm start
+```
+
+## Environment Variables
+
+Variables de entorno de configuracion para el uso de Firebase - Firestore
+
+Crear archivo '.env' y configurar variables de entorno como en el siguiente ejemplo:
+
+See [`.env.example`](https://github.com/ManuCostales/Coderhouse-React) for an example.
+
+
+## Built Using
+
+- [Create-React-App](https://create-react-app.dev/)
+- [react-router-dom](https://v5.reactrouter.com/web/guides/quick-start)
+- [sass](https://sass-lang.com/)
+- [toastify](https://apvarun.github.io/toastify-js/)
+- [firebase](https://firebase.google.com/)
+- [react-spinners](https://www.npmjs.com/package/react-spinners)
+
+## Test App 
+-npm run start
+[Deploy]()
 
 ![](ReactDemo.gif)

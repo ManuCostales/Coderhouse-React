@@ -12,6 +12,18 @@
     color: white;
     justify-content: space-evenly;
     align-items: center;
+    .close__div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1vw;
+        align-self: flex-start;
+        height: 3vh;
+        .close__img {
+            align-self: flex-end;
+            width: 50px;
+        }
+    }
     h1 {
         font-size: 3rem;
         font-weight: 700;
@@ -62,5 +74,9 @@
         &:hover {
             font-size: 3rem;
         }
+    }
+    .total__price {
+        font-size: 2rem;
+        font-weight: 600;
     }
 }
