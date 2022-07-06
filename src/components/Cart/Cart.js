@@ -12,6 +12,8 @@ const Cart = () => {
 
     const { cart, removeItem, clearCart } = useContext(CartContext)
 
+    const [validated, setValidation] = useState(false)
+
     const cartTotalPrices = cart.map(item => item.totalPrice)
 
     let [orderData, setOrderData] = useState({})
@@ -77,7 +79,14 @@ const Cart = () => {
         setOrderData(obj)
     }
 
-    
+    const isValidated = () => {
+        if (validated === false) {
+            alert("")
+        }
+        else {
+
+        }
+    }
 
     return (
         <div className="cart">
@@ -90,7 +99,7 @@ const Cart = () => {
             <CartDetail />
             { cart.length === 0 ? <div className="no__items">No Items on Cart</div> : <div class="btn__container">
                 <button className="clear__cart" onClick={clearCart}>Remove All Items</button>
-                <CartForm buyerData={buyerData} setBuyerData={setBuyerData}/>
+                <CartForm isValidated={isValidated} buyerData={buyerData} setBuyerData={setBuyerData}/>
                 <button className="generate__cart" onClick={createOrder}>Generate Order</button>
             </div>}
             { cartTotalPrices.length === 0 ? <Link to="/" className="backToHome">Volver a Comprar</Link> : <p className="total__price">Total: ${cartTotalPrices.reduce((accum, currentItem) => {

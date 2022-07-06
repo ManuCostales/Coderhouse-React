@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react"
-import { ToastContainer, toast } from 'react-toastify';
+import { Link } from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
 
 function Checkout(props){
@@ -25,11 +24,12 @@ function Checkout(props){
                     <div>Name: { prod.name }</div>
                     <div>Unit Price: ${ prod.unitPrice }</div>
                     <div>Total Price: ${ prod.totalPrice }</div>
-                    <div>Stock: { prod.stock }</div>
+                    <div>Stock Left: { prod.stock - prod.quantity }</div>
                     <div>Quantity: { prod.quantity }</div>
-                    </div>)}
+                </div>)}
             </div>
             <p className="total__pay">Total a Pagar: ${orderData.total}</p>
+            <Link className="link__home" to="/">Volver a Comprar</Link>
         </div>
     )
 }
