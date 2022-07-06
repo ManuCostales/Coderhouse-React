@@ -14,7 +14,11 @@ const Cart = () => {
 
     const [validated, setValidation] = useState(false)
 
-    const cartTotalPrices = cart.map(item => item.totalPrice)
+    const cartPrices = cart.map(item => item.totalPrice)
+
+    console.log(cartPrices)
+
+    let cartTotalPrices = cartPrices.reduce((acc, price) => acc + price, 0)
 
     let [orderData, setOrderData] = useState({})
     let [buyingState, setBuyingState] = useState(false)
@@ -81,10 +85,12 @@ const Cart = () => {
 
     const isValidated = () => {
         if (validated === false) {
-            alert("")
+            console.log(validated)
+            alert("Error al tomar datos del cliente, por favor ingresa todos los campos correctamente")
         }
         else {
-
+            console.log(validated)
+            createOrder()
         }
     }
 
@@ -99,12 +105,10 @@ const Cart = () => {
             <CartDetail />
             { cart.length === 0 ? <div className="no__items">No Items on Cart</div> : <div class="btn__container">
                 <button className="clear__cart" onClick={clearCart}>Remove All Items</button>
-                <CartForm isValidated={isValidated} buyerData={buyerData} setBuyerData={setBuyerData}/>
-                <button className="generate__cart" onClick={createOrder}>Generate Order</button>
+                <CartForm validated={validated} setValidation={setValidation} buyerData={buyerData} setBuyerData={setBuyerData}/>
+                <button className="generate__cart" onClick={isValidated}>Generate Order</button>
             </div>}
-            { cartTotalPrices.length === 0 ? <Link to="/" className="backToHome">Volver a Comprar</Link> : <p className="total__price">Total: ${cartTotalPrices.reduce((accum, currentItem) => {
-            return accum + currentItem
-            })}</p> }
+            { cartPrices.length === 0 ? <Link to="/" className="backToHome">Volver a Comprar</Link> : <p className="total__price">Total: ${cartTotalPrices}</p> }
             { loadingOrder === false && <Checkout orderData={orderData} /> }
         </div>
     )
